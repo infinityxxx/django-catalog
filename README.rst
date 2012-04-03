@@ -39,7 +39,7 @@ Download & Install:
     urlpatterns += patterns('',
         url(r'^catalog/', include('catalog.urls.by_slug')),
         # or 
-        # url(r'^catalog/', include('catalog.urls.by_slug')),
+        # url(r'^catalog/', include('catalog.urls.by_id')),
     )
 
 #) Run ``manage.py syncdb``
