@@ -275,10 +275,10 @@ class GetTreeitem(Tag):
     
         {% get_treeitem model 'defaults.section' slug 'catalog' as catalog_treeitem %}
         {% if catalog_treeitem %}
-        Chlidren:
+        Children:
             <ul>
-            {% for child in catalog_section.children.published %}
-                <li>{{ chlid.contento_object.name }}</li>
+            {% for child in catalog_treeitem.children.published %}
+                <li>{{ child.content_object.name }}</li>
             {% endfor %}
             </ul>
         {% endif %}
