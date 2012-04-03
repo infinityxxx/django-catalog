@@ -12,13 +12,9 @@ Download & Install:
 
 **Download**
 
-#) From python package index:::
-
-    pip install django-catalog
-
 #) From github:::
 
-    pip install -e git://github.com/redsolution/django-catalog.git@2.0.0#egg=Django-catalog
+    pip install -e git://github.com/infinityxxx/django-catalog.git@2.0.0#egg=Django-catalog
 
 **Quick install**
 
