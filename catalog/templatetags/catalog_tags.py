@@ -30,7 +30,7 @@ def get_treeitem_from_context(context, silent=True):
         obj = context['object']
         if (hasattr(obj.tree, 'get') and callable(obj.tree.get)):
             # Check that object.tree.get() returns TreeItem instance
-            if (isinstance(context['object'].tree.get(), TreeItem)):
+            if (isinstance(context['object'].tree.get(), TreeItem)): 
                 treeitem = obj.tree.get()
                 return treeitem
     if silent:
