@@ -14,7 +14,7 @@ Download & Install:
 
 #) From python package index:::
 
-    pip install djang-catalog
+    pip install django-catalog
 
 #) From github:::
 
@@ -26,6 +26,8 @@ Download & Install:
 
     INSTALLED_APPS += [
     ...
+    'classytags',
+    'extdirect.django','
     'mptt',
     'catalog',
     'catalog.contrib.defaults',
@@ -36,6 +38,8 @@ Download & Install:
 
     urlpatterns += patterns('',
         url(r'^catalog/', include('catalog.urls.by_slug')),
+        # or 
+        # url(r'^catalog/', include('catalog.urls.by_slug')),
     )
 
 #) Run ``manage.py syncdb``
@@ -57,10 +61,3 @@ Screenshot:
 
 .. |catalog-admin|  image:: http://github.com/redsolution/django-catalog/raw/2.0.0/docs/admin-screenshot.png
 
-
-Redsolution CMS classifiers:
-----------------------------
-
-`Content plugins`_
-
-.. _`Content plugins`: http://www.redsolutioncms.org/classifiers/content
