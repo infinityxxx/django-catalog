@@ -217,9 +217,11 @@ class CatalogTree(Tag):
         Argument('tree_type', required=False, resolve=True, default=TREE_TYPE_DRILLDOWN),
         'current',
         Argument('current', required=False),
+        'level_from',
+        Argument('level_from', required=False),
     )
 
-    def render_tag(self, context, active, tree_type, current):
+    def render_tag(self, context, active, tree_type, current, level_from):
         context.push()
         if current is not None:
             children = current.children.published()
@@ -236,10 +238,14 @@ class CatalogTree(Tag):
             context['breadcrumbs'] = [active]
             context['breadcrumbs'].extend(active.get_ancestors())
 
+        if level_from is None:
+            context['level_from'] = 0
+
         context['object_list'] = children
         context['type'] = tree_type
         context['active'] = active
         context['current'] = current
+        context['level_from'] = level_from
 
         output = render_to_string(self.template, context)
         context.pop()
