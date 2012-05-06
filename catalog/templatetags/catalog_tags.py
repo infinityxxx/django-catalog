@@ -219,6 +219,8 @@ class CatalogTree(Tag):
         Argument('current', required=False),
         'level_from',
         Argument('level_from', required=False),
+        'id_from',
+        Argument('id_from', required=False),
     )
 
     def render_tag(self, context, active, tree_type, current, level_from):
@@ -241,11 +243,15 @@ class CatalogTree(Tag):
         if level_from is None:
             context['level_from'] = 0
 
+        if id_from is None:
+            context['id_from'] = 0
+
         context['object_list'] = children
         context['type'] = tree_type
         context['active'] = active
         context['current'] = current
         context['level_from'] = level_from
+        context['id_from'] = id_from
 
         output = render_to_string(self.template, context)
         context.pop()
