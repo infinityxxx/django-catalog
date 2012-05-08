@@ -146,7 +146,7 @@ class BreadcrumbTag(InclusionTag):
         treeitem = get_treeitem_from_context(context, silent=False)
         if treeitem is not None:
             ancestors = list(treeitem.get_ancestors())
-            return {'breadcrumbs': ancestors + [treeitem, ] }
+            return {'breadcrumbs': ancestors + [treeitem, ], 'request':context['request'] }
         else:
             return {}
 

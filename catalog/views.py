@@ -6,7 +6,7 @@ from django.template import loader
 from django.views.generic.list_detail import object_detail, object_list
 
 
-def item_view(request, model, slug=None, object_id=None):
+def item_view(request, model, slug=None, object_id=None, template_dir=None):
     '''
     Render catalog page for object
     
@@ -74,12 +74,15 @@ def item_view(request, model, slug=None, object_id=None):
         # select template
         try:
             opts = ModelClass._meta
+            if template_dir is None:
+                template_dir = 'catalog'
             t = loader.select_template([
-                'catalog/%s/%s.html' % (opts.app_label, opts.module_name),
-                'catalog/%s.html' % opts.module_name,
+                '%s/%s/%s.html' % (template_dir, opts.app_label, opts.module_name),
+                '%s/%s.html' % (template_dir, opts.module_name),
                 '%s/%s_in_catalog.html' % (opts.app_label, opts.module_name),
-                'catalog/treeitem.html',
+                '%s/treeitem.html' % (template_dir),
             ])
+            print t
             extra_context = {
                 'template_name': t.name,
             }
@@ -95,7 +98,7 @@ def item_view(request, model, slug=None, object_id=None):
     else:
         return HttpResponseNotFound(_('Model %s does not registered' % model))
 
-def root(request):
+def root(request, template_dir=None):
     '''
     Render catalog root page.
     
@@ -140,6 +143,9 @@ def root(request):
 
     templates_list = ['%s/catalog_root.html' % app_name for app_name in get_data_appnames()]
     templates_list.append('catalog/root.html')
+    if template_dir is None:
+        template_dir = 'catalog'
+    templates_list.append(template_dir+'/root.html')
     t = loader.select_template(templates_list)
     extra_context = {
         'template_name': t.name,
